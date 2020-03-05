@@ -14,11 +14,11 @@
                         <div class="form-group">
                             <label>Tanggal Sewa</label>
                             <input type="hidden" name="id_mobil" value="<?= $dt->id_mobil ?>">
-                            <input type="text" name="tgl_sewa" class="form-control picker" autocomplete="off" required>
+                            <input type="text" name="tgl_sewa" class="form-control picker" onclick="disable()" autocomplete="off" required>
                         </div>
                         <div class="form-group">
                             <label>Tanggal Kembali</label>
-                            <input type="text" name="tgl_kembali" class="form-control picker" autocomplete="off"
+                            <input type="text" name="tgl_kembali" class="form-control picker" onclick="disable()" autocomplete="off"
                                 required>
                         </div>
 

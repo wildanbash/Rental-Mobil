@@ -54,4 +54,8 @@ class Auth extends CI_Controller
         $this->load->view('ganti_password');
         $this->load->view('template_admin/footer');
     }
+
+    public function register(){
+        $this->load->view('register');
+    }
 }

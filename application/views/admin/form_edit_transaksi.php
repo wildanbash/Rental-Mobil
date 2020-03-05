@@ -44,11 +44,11 @@
 							</div>
 							<div class="form-group">
 								<label>Tanggal Sewa</label>
-								<input type="text" name="tgl_sewa" class="form-control picker" value="<?= $ts->tanggal_sewa?>" required>
+								<input type="text" name="tgl_sewa" class="form-control picker" onclick="disable()" value="<?= $ts->tanggal_sewa?>" required>
 							</div>
 							<div class="form-group">
 								<label>Tanggal Kembali</label>
-								<input type="text" name="tgl_kembali" class="form-control picker" value="<?= $ts->tanggal_kembali?>" required>
+								<input type="text" name="tgl_kembali" class="form-control picker" onclick="disable()" value="<?= $ts->tanggal_kembali?>" required>
 							</div>
 						</div>
 

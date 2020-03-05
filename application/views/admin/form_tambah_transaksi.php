@@ -36,11 +36,11 @@
 							</div>
 							<div class="form-group">
 								<label>Tanggal Sewa</label>
-								<input type="text" name="tgl_sewa" class="form-control picker" autocomplete="off" required>
+								<input id="tgl_sewa" type="text" name="tgl_sewa" class="form-control picker" onclick="disable()" autocomplete="off" required>
 							</div>
 							<div class="form-group">
 								<label>Tanggal Kembali</label>
-								<input type="text" name="tgl_kembali" class="form-control picker" autocomplete="off" required>
+								<input id="tgl_kembali" type="text" name="tgl_kembali" class="form-control picker" onclick="disable()" autocomplete="off" required>
 							</div>
 						</div>
 

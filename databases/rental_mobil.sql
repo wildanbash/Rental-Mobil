@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2020 at 08:39 AM
+-- Generation Time: Feb 28, 2020 at 03:01 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -47,7 +47,7 @@ CREATE TABLE `mobil` (
 INSERT INTO `mobil` (`id_mobil`, `id_type`, `merk`, `no_plat`, `warna`, `tahun`, `harga`, `status`, `gambar`) VALUES
 (6, 1, 'Suzuki Ciaz', 'N 1985 RTF', 'Putih', '2019', 800000, '1', 'mobil-suzuki-ciaz1.jpg'),
 (7, 1, 'Honda Civic', 'B 9547 HUY', 'Silver', '2014', 1000000, '1', 'std_in-2499489_300e.jpg'),
-(8, 5, 'Suzuki Ciaz', 'N 6758 AW', 'PINK', '2017', 600000, '1', 'Suzuki-Ciaz.jpg'),
+(8, 5, 'Suzuki Ciaz', 'N 6758 AW', 'PINK', '2017', 600000, '0', 'Suzuki-Ciaz.jpg'),
 (10, 5, 'Suzuki Ertiga', 'N 1985 NK', 'Silver', '2018', 650000, '0', 'Suzuki-All-new-Ertiga-2018-Warna-merah-Pearl-Radiant-Red.jpg');
 
 -- --------------------------------------------------------
@@ -63,18 +63,22 @@ CREATE TABLE `transaksi` (
   `tanggal_sewa` datetime NOT NULL,
   `tanggal_kembali` datetime NOT NULL,
   `total_sewa` int(11) NOT NULL,
-  `status` int(1) NOT NULL COMMENT '1. Disewa, 2. Selesai'
+  `status` int(1) NOT NULL COMMENT '1. Disewa, 2. Selesai',
+  `status_pembayaran` int(1) NOT NULL COMMENT '0.belum dibayar, 1.menunggu pembayaran, 2.sudah dibayar',
+  `bukti_pembayaran` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id_transaksi`, `id_user`, `id_mobil`, `tanggal_sewa`, `tanggal_kembali`, `total_sewa`, `status`) VALUES
-(1, 3, 7, '2020-02-11 13:00:00', '2020-02-15 12:30:00', 4000000, 2),
-(4, 3, 6, '2020-02-20 11:51:00', '2020-02-22 11:51:00', 1600000, 2),
-(5, 6, 8, '2020-02-06 01:58:00', '2020-02-08 01:58:00', 1200000, 2),
-(6, 6, 10, '2020-02-27 02:03:00', '2020-02-29 02:03:00', 1300000, 1);
+INSERT INTO `transaksi` (`id_transaksi`, `id_user`, `id_mobil`, `tanggal_sewa`, `tanggal_kembali`, `total_sewa`, `status`, `status_pembayaran`, `bukti_pembayaran`) VALUES
+(1, 3, 7, '2020-02-11 13:00:00', '2020-02-15 12:30:00', 4000000, 2, 2, ''),
+(4, 3, 6, '2020-02-20 11:51:00', '2020-02-22 11:51:00', 1600000, 2, 2, ''),
+(5, 6, 8, '2020-02-06 01:58:00', '2020-02-08 01:58:00', 1200000, 2, 2, ''),
+(6, 6, 10, '2020-02-27 02:03:00', '2020-02-29 02:03:00', 1300000, 1, 2, 'Screenshot_12.jpg'),
+(10, 4, 8, '2020-02-26 04:00:00', '2020-02-29 04:30:00', 1800000, 2, 2, 'Screenshot_13.jpg'),
+(11, 4, 8, '2020-02-28 11:11:00', '2020-02-29 13:00:00', 600000, 1, 2, 'Screenshot_1.png');
 
 -- --------------------------------------------------------
 
@@ -122,8 +126,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `nama`, `email`, `password`, `alamat`, `gender`, `no_telp`, `no_ktp`, `scan_ktp`, `scan_kk`, `level`) VALUES
 (3, 'Wildan Dawam Bash', 'wildan@gmail.com', 'af6b3aa8c3fcd651674359f500814679', 'Probolinggo', 'Laki-Laki', '8046399877', '213123123112', 'KTP-1544523262.png', 'KK.PNG', 1),
-(4, 'Martin Amanu', 'martin@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 'Jombang', 'Laki-Laki', '085727287289', '123213123', 'KTP-15445232621.png', 'KK1.PNG', 2),
-(6, 'Facko Ellanda', 'facko@gmail.com', '98285560d7c2772047634cfa4b6e3c8d', 'Blitar', 'Laki-Laki', '08921711221', '896786128689', 'KTP-15445232623.png', 'KK3.PNG', 2);
+(4, 'Martin Amanu', 'martin@gmail.com', '925d7518fc597af0e43f5606f9a51512', 'Jombang', 'Laki-Laki', '085727287289', '123213123', 'KTP-15445232621.png', 'KK1.PNG', 2),
+(6, 'Facko Ellanda', 'facko@gmail.com', '98285560d7c2772047634cfa4b6e3c8d', 'Blitar', 'Laki-Laki', '08921711221', '896786128689', 'KTP-15445232623.png', 'KK3.PNG', 2),
+(7, 'wahyu prasetyo', 'wahyu@gmail.com', '32c9e71e866ecdbc93e497482aa6779f', 'Jombang', 'Laki-Laki', '089788967', '275782578222', 'KTP-15445232624.png', 'KK4.PNG', 2);
 
 --
 -- Indexes for dumped tables
@@ -170,7 +175,7 @@ ALTER TABLE `mobil`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `type`
@@ -182,7 +187,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables

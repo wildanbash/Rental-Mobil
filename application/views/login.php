@@ -57,6 +57,7 @@
                     </button>
                   </div>
                 </form>
+                <p>Belum punya akun?<a href="<?=base_url('auth/register')?>" style="text-decoration: none"><strong> Registrasi Disini</strong></a></p>
               </div>
             </div>
           </div>

@@ -4,7 +4,6 @@
         <h1>Data Transaksi</h1>
         </div>
 
-        <a href="<?= base_url('admin/transaksi/tambah_transaksi')?>" class="btn btn-primary mb-3"> <i class="fas fa-plus"></i>  Tambah Data</a>
         <?= $this->session->flashdata('pesan') ?>
         <table class="table table-hover table-striped table-bordered" id="data_table">
             <thead>

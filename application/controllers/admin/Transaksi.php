@@ -36,7 +36,8 @@ class Transaksi extends CI_Controller{
         $harga_mobil = $this->input->post('harga');
         $selisih_hari=((abs(strtotime($tanggal_sewa) - strtotime($tanggal_kembali)))/(60*60*24));
         $total_sewa = $harga_mobil*$selisih_hari;
-        $status = $this->input->post('status'); 
+        $status = $this->input->post('status');
+        $status_pembayaran = 2; 
 
         $data = array(
             'id_transaksi' => $id_transaksi,
@@ -45,7 +46,8 @@ class Transaksi extends CI_Controller{
             'tanggal_sewa' => $tanggal_sewa,
             'tanggal_kembali' => $tanggal_kembali,
             'total_sewa' => $total_sewa,
-            'status' => $status
+            'status' => $status,
+            'status_pembayaran' => $status_pembayaran
         );
 
         $this->transaksi_model->insert_data($data,'transaksi');
@@ -62,7 +64,7 @@ class Transaksi extends CI_Controller{
             <span aria-hidden="true">&times;</span>
             </button>
             </div>');
-        redirect('admin/transaksi');
+        redirect('admin/transaksi/selesai');
         
     }
 
@@ -124,7 +126,7 @@ class Transaksi extends CI_Controller{
             <span aria-hidden="true">&times;</span>
             </button>
             </div>');
-        redirect('admin/transaksi');
+        redirect('admin/transaksi/selesai');
     }
 
     public function delete_transaksi($id){
@@ -137,7 +139,7 @@ class Transaksi extends CI_Controller{
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-        redirect('admin/data_transaksi');
+        redirect('admin/transaksi/selesai');
     }
 
     public function menunggu_pembayaran(){
@@ -187,6 +189,15 @@ class Transaksi extends CI_Controller{
         $this->transaksi_model->edit_data('transaksi', $data, $where);
 
         echo "<script>window.location='".base_url('admin/transaksi/menunggu_konfirmasi')."';</script>";
+    }
+
+    public function _rules(){
+        $this->form_validation->set_rules('id_type', 'Kode Type', 'required');
+        $this->form_validation->set_rules('merk', 'Merk', 'required');
+        $this->form_validation->set_rules('no_plat', 'No Plat', 'required');
+        $this->form_validation->set_rules('tahun', 'Tahun', 'required');
+        $this->form_validation->set_rules('warna', 'Warna', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
     }
 }
 

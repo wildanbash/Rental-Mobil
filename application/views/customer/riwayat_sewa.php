@@ -14,7 +14,6 @@
                         <th>Total Sewa</th>
                         <th>Status Pembayaran</th>
                         <th>Bukti Pembayaran</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>

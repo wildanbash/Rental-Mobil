@@ -12,7 +12,10 @@ function check_not_login(){
     $ci =&get_instance();
     $user_session = $ci->session->userdata('id_user');
     if(!$user_session){
-        redirect('auth/login');
+        echo "<script>
+                alert('Silahkan Melakukan Login Terlebih Dahulu');
+                window.location='" . site_url('auth/login') . "';
+             </script>";
     }
 }
 

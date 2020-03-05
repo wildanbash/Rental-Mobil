@@ -28,8 +28,17 @@ $('.picker').datetimepicker({
     datepicker: true,
     format: 'Y-m-d H:i', // formatDate
     hours12: false,
+    minDate: 0,
     step: 30
-})
+});
+
+function disable()
+{
+ document.onkeydown = function (e) 
+ {
+  return false;
+ }
+}
   </script>
 
   <script>
